@@ -17,7 +17,7 @@ namespace TodoFunctionApp
         static List<Todo> items = new List<Todo>();
         [FunctionName("CreateTodo")]
         public static async Task<IActionResult> CreateTodo(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "todo")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "todo/Create")             ] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("Creating a new todo list item");
@@ -34,7 +34,7 @@ namespace TodoFunctionApp
 
         [FunctionName("GetTodos")]
         public static async Task<IActionResult> GetTodos(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get" , Route = "todo")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get" , Route = "GetTodo")] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("Getting Todo items");
@@ -45,7 +45,7 @@ namespace TodoFunctionApp
 
         [FunctionName("GetTodoById")]
         public static async Task<IActionResult> GetTodoById(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get",  Route = "todo/{id}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get",  Route = "GetTodo/{id}")] HttpRequest req,
             ILogger log,string id)
         {
             log.LogInformation("Getting Todo items");
@@ -61,7 +61,7 @@ namespace TodoFunctionApp
 
         [FunctionName("UpdateTodo")]
         public static async Task<IActionResult> UpdateTodo(
-            [HttpTrigger(AuthorizationLevel.Anonymous,  "put", Route = "todo")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous,  "put", Route = "updatetodo/{id}")] HttpRequest req,
             ILogger log,string id)
         {
             log.LogInformation("Creating a new todo list item");
@@ -81,9 +81,9 @@ namespace TodoFunctionApp
                 todo.TaskDescription = updated.TaskDescription;
             return new OkObjectResult(todo);
         }
-        [FunctionName("UpdateTodo")]
+        [FunctionName("DeleteToDO")]
         public static async Task<IActionResult> DeleteToDO(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "todo")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "Deletetodo/{id}")] HttpRequest req,
             ILogger log, string id)
         {
             log.LogInformation("deleting a new todo list item");
